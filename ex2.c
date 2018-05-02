@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -20,7 +19,7 @@ char	font[62] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 // board에 문자 writing, margin-이전 문자와의 간격
 void boardWriter(int fontidx, int margin);
 void dot(int,int);
-void callbacl(void);
+void callback(void);
 int cnt;
 
 int main(void)
@@ -51,7 +50,18 @@ int main(void)
         printf("\n");
     }
 
-    total_col = sizeof(board) / 8;
+    int cnt2 = 0;
+
+    for(int i = 0; ; i++)
+    {
+        cnt2++;
+        if(board[1][i] != 0 && board[1][i] != 1)
+        {
+            break;
+        }
+    }
+
+        
 
     int ret;
     ret = init();
@@ -66,9 +76,9 @@ int main(void)
     {
 	    for(int i = 0; i < 8; i++)
 	    {
-		    for(int j = 0; k < 8 ; j++)
+		    for(int j = 0; j < 8 ; j++)
 		    {
-			    if(board[i][(j+cnt)%total_col] == 1)
+			    if(board[i][(j+cnt)%cnt2] == 1)
 				    dot(i+1,j+1);
 		    }
 	    }
